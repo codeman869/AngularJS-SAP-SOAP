@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
+<!--
+<link rel="shortcut icon" type="image/png" href="jasmine/lib/jasmine-2.0.0/jasmine_favicon.png">
+<link rel="stylesheet" type="text/css" href="jasmine/lib/jasmine-2.0.0/jasmine.css">
+
+<script type="text/javascript" src="jasmine/lib/jasmine-2.0.0/jasmine.js"></script>
+<script type="text/javascript" src="jasmine/lib/jasmine-2.0.0/jasmine-html.js"></script>
+<script type="text/javascript" src="jasmine/lib/jasmine-2.0.0/boot.js"></script>
+<script type="text/javascript" src="spec/spec.js"></script>
+-->
+<script src="app.js"></script>
+
+</head>
+
+<body ng-app="EmpData">
+<div class="row">
+	<div class="container col-md-2">
+	</div>
+	<div class="container col-md-8">
+		<div ng-controller="MainController as main">
+			<form class="form-signin" ng-submit="main.findEmps()">
+			<h2 class="form-sigin-heading text text-center">Please Fill in the Information</h2>
+				<input type="text" placeholder="URL" ng-model="main.url" class="form-control">
+				<input type="text" placeholder="First Name" ng-model="main.firstname" class="form-control">
+				<input type="text" placeholder="Last Name" ng-model="main.lastname" class="form-control">
+				<input type="text" placeholder="PERNR" ng-model="main.pernr" class="form-control">
+				<input type="text" placeholder="Email" ng-model="main.email" class="form-control">
+				<input type="text" placeholder="UserID" ng-model="main.userid" class="form-control">
+				<input type="text" placeholder="Position" ng-model="main.position" class="form-control">
+				<input type="text" placeholder="Job" ng-model="main.job" class="form-control">
+				<input type="text" placeholder="username" ng-model="main.user" class="form-control" required>
+				<input type="password" placeholder="password" ng-model="main.pass" class="form-control" required>
+				<input type="submit" value="Click Here" class="btn btn-primary">
+			</form>
+			<div class="alert" ng-if='main.message != ""' ng-class="{'alert-info': !main.status, 'alert-success': main.status, 'alert-danger':main.error}">
+				{{ main.message }}
+			</div>		
+			<table class="table table-striped table-hover table-responsive" ng-if="main.employees.length > 0">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Personnel #</th>
+						<th>Position #</th>
+						<th>NetworkID</th>
+						<th>Area</th>
+						<th>Group</th>
+						<th>Job</th>
+						<th>Hire Date</th>
+						<th>Rehire Date</th>
+						<th>Termination Date</th>
+						<th>Manager Name</th>
+						<th>Employment Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="emp in main.employees">
+						<td>{{emp.name}}</td>
+						<td>{{emp.email}}</td>
+						<td>{{emp.pernr}}</td>
+						<td>{{emp.position}}</td>
+						<td>{{emp.userid}}</td>
+						<td>{{emp.area}}</td>
+						<td>{{emp.group}}</td>
+						<td>{{emp.job}}</td>
+						<td>{{emp.hire}}</td>
+						<td>{{emp.rehire}}</td>
+						<td>{{emp.term}}</td>
+						<td>{{emp.mgrName}}</td>
+						<td>{{emp.status}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="container col-md-2">
+	</div>
+</div>
+</body>
+</html>
